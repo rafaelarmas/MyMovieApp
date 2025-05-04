@@ -1,0 +1,6 @@
+@MyMovieApp.Server_HostAddress = http://localhost:5150
+
+GET {{MyMovieApp.Server_HostAddress}}/getmovie/
+Accept: application/json
+
+###

@@ -1,0 +1,20 @@
+.pagination {
+    display: flex;
+    flex-wrap: wrap;
+    padding-top: 10px;
+}
+
+.keyword {
+    display: inline-flex;
+    border: 1px solid #dee2e6;
+    background-color: #ffffff;
+    padding: 10px;
+}
+
+.go {
+    display: inline-flex;
+    color: #ffffff;
+    border: 1px solid #dee2e6;
+    background-color: #0d6efd;
+    padding: 10px;
+}

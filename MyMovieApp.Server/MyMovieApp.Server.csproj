@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net9.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+	<SpaRoot>..\mymovieapp.client</SpaRoot>
+	<SpaProxyLaunchCommand>npm run dev</SpaProxyLaunchCommand>
+	<SpaProxyServerUrl>https://localhost:54891</SpaProxyServerUrl>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\mymovieapp.client\mymovieapp.client.esproj">
+      <ReferenceOutputAssembly>false</ReferenceOutputAssembly>
+    </ProjectReference>
+    <ProjectReference Include="..\MyMovieApp.Data\MyMovieApp.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.SpaProxy">
+      <Version>9.*-*</Version>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.2.0" />
+  </ItemGroup>
+
+</Project>
