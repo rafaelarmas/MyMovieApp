@@ -10,7 +10,7 @@ export type Props = {
     setCurrentPage: (page: number) => void;
 };
 
-interface Movie {
+export interface Movie {
     movieId: number;
     releaseDate: string;
     title: string;
@@ -65,7 +65,7 @@ export default function Pagination({
         </table>;
 
     useEffect(() => {
-        populateMovieData(1, '');
+        populateMovieData(1, '', 'None');
     }, []);
 
     return (
@@ -77,6 +77,30 @@ export default function Pagination({
                     <option value="25">25</option>
                     <option value="50">50</option>
                 </select>
+                <label>Genre:</label>
+                <select className="genreFilter" name="genreFilter">
+                    <option value="None">None</option>
+                    <option value="Action">Action</option>
+                    <option value="Adventure">Adventure</option>
+                    <option value="Animation">Animation</option>
+                    <option value="Comedy">Comedy</option>
+                    <option value="Crime">Crime</option>
+                    <option value="Documentary">Documentary</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Family">Family</option>
+                    <option value="Fantasy">Fantasy</option>
+                    <option value="History">History</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Music">Music</option>
+                    <option value="Mystery">Mystery</option>
+                    <option value="Romance">Romance</option>
+                    <option value="Science Fiction">Science Fiction</option>
+                    <option value="Thriller">Thriller</option>
+                    <option value="TV Movie">TV Movie</option>
+                    <option value="War">War</option>
+                    <option value="Western">Western</option>
+                </select>
+                <br />
                 <br />
                 <label>Keyword:</label>
                 <input type="text" name="keyword" className="keyword" />
@@ -115,12 +139,14 @@ export default function Pagination({
         setCurrentPage(page);
         const keyword = document.getElementsByClassName("keyword").keyword.value;
         maxLength = parseInt(document.getElementsByClassName("pageSize").pageSize.value);
-        populateMovieData(page, keyword);
+        const seletedGenre = document.getElementsByClassName("genreFilter").genreFilter.value;
+        populateMovieData(page, keyword, seletedGenre);
     }
 
-    async function populateMovieData(page: number, keyword: string) {
+    async function populateMovieData(page: number, keyword: string, seletedGenre: string) {
         const keywordText = keyword !== null && keyword !== undefined ? 'keyword=' + keyword + '&' : '';
-        const response = await fetch('http://localhost:5150/getmoviesbykeyword?' + keywordText + 'pageSize=' + maxLength + '&currentPage=' + page);
+        const genreText = seletedGenre === 'None' ? '' : '&genre=' + seletedGenre;
+        const response = await fetch('http://localhost:5150/getmoviesbykeyword?' + keywordText + 'pageSize=' + maxLength + '&currentPage=' + page + genreText);
         if (response.ok) {
             const data = await response.json();
             setMovies(data);

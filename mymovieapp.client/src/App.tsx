@@ -10,7 +10,7 @@ function App() {
 
     return (
         <div className="container">
-            <h1>Search</h1>
+            <h1>My Movie App</h1>
             <Pagination
                 currentPage={currentPage}
                 lastPage={lastPage}
